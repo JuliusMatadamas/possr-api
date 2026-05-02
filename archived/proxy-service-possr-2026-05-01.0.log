@@ -1,0 +1,53 @@
+[INFO ] 2026-05-01 19:30:05.093 [restartedMain] c.p.MainApplication - Starting MainApplication using Java 21.0.10 with PID 28684 (C:\Users\Juliu\Documents\Proyectos\possr\backend\proxy-service-possr\target\classes started by Juliu in C:\Users\Juliu\Documents\Proyectos\possr\backend\proxy-service-possr)
+[DEBUG] 2026-05-01 19:30:05.093 [restartedMain] c.p.MainApplication - Running with Spring Boot v4.0.6, Spring v7.0.7
+[INFO ] 2026-05-01 19:30:05.093 [restartedMain] c.p.MainApplication - No active profile set, falling back to 1 default profile: "default"
+[INFO ] 2026-05-01 19:30:05.125 [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2026-05-01 19:30:05.127 [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2026-05-01 19:30:05.582 [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2026-05-01 19:30:05.598 [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+[INFO ] 2026-05-01 19:30:06.253 [restartedMain] o.s.b.j.s.JettyServletWebServerFactory - Server initialized with port: 8080
+[INFO ] 2026-05-01 19:30:06.257 [restartedMain] o.e.j.s.Server - jetty-12.1.8; built: 2026-04-01T01:09:18.991Z; git: c9cdc9aaa434a3665b8a53b4d1cc3684992da649; jvm 21.0.10+8-LTS-217
+[INFO ] 2026-05-01 19:30:06.282 [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1153 ms
+[INFO ] 2026-05-01 19:30:06.374 [restartedMain] o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+[INFO ] 2026-05-01 19:30:06.390 [restartedMain] o.e.j.s.h.ContextHandler - Started osbjs.JettyEmbeddedWebAppContext@c1b5cb3{application,/ps/physical-storage-management/possr/api,b=file:/C:/Users/Juliu/AppData/Local/Temp/jetty-docbase.8080.6524833241135587983/,a=AVAILABLE,h=oeje11s.SessionHandler@10cef1c6{STARTED}}
+[INFO ] 2026-05-01 19:30:06.392 [restartedMain] o.e.j.e.s.ServletContextHandler - Started osbjs.JettyEmbeddedWebAppContext@c1b5cb3{application,/ps/physical-storage-management/possr/api,b=file:/C:/Users/Juliu/AppData/Local/Temp/jetty-docbase.8080.6524833241135587983/,a=AVAILABLE,h=oeje11s.SessionHandler@10cef1c6{STARTED}}
+[INFO ] 2026-05-01 19:30:06.392 [restartedMain] o.e.j.s.Server - Started oejs.Server@14565b23{STARTING}[12.1.8,sto=0] @134ms
+[INFO ] 2026-05-01 19:30:06.520 [restartedMain] o.h.o.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2026-05-01 19:30:06.548 [restartedMain] o.h.o.core - HHH000001: Hibernate ORM core version 7.2.12.Final
+[INFO ] 2026-05-01 19:30:06.822 [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2026-05-01 19:30:06.842 [restartedMain] c.z.h.HikariDataSource - SpringBootJPAHikariCP - Starting...
+[INFO ] 2026-05-01 19:30:06.949 [restartedMain] c.z.h.p.HikariPool - SpringBootJPAHikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@34ec9b74
+[INFO ] 2026-05-01 19:30:06.956 [restartedMain] c.z.h.HikariDataSource - SpringBootJPAHikariCP - Start completed.
+[WARN ] 2026-05-01 19:30:06.985 [restartedMain] o.h.o.core - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+[WARN ] 2026-05-01 19:30:06.985 [restartedMain] o.h.o.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2026-05-01 19:30:07.002 [restartedMain] o.h.o.c.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/possr?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: possr/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[INFO ] 2026-05-01 19:30:07.214 [restartedMain] o.h.o.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO ] 2026-05-01 19:30:07.216 [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 2026-05-01 19:30:07.295 [restartedMain] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2026-05-01 19:30:07.998 [restartedMain] o.s.b.a.e.w.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+[INFO ] 2026-05-01 19:30:08.026 [restartedMain] o.e.j.s.h.C.application - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2026-05-01 19:30:08.026 [restartedMain] o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2026-05-01 19:30:08.042 [restartedMain] o.s.w.s.DispatcherServlet - Completed initialization in 16 ms
+[INFO ] 2026-05-01 19:30:08.074 [restartedMain] o.e.j.s.AbstractConnector - Started oejs.ServerConnector@6c5bef4a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+[INFO ] 2026-05-01 19:30:08.074 [restartedMain] o.s.b.j.JettyWebServer - Jetty started on port 8080 (http/1.1) with context path '/ps/physical-storage-management/possr/api'
+[INFO ] 2026-05-01 19:30:08.089 [restartedMain] c.p.MainApplication - Started MainApplication in 3.281 seconds (process running for 3.736)
+[INFO ] 2026-05-01 19:30:38.851 [SpringApplicationShutdownHook] o.s.b.j.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[INFO ] 2026-05-01 19:30:38.851 [jetty-shutdown] o.s.b.j.GracefulShutdown - Graceful shutdown complete
+[INFO ] 2026-05-01 19:30:38.851 [SpringApplicationShutdownHook] o.e.j.s.AbstractConnector - Stopped oejs.ServerConnector@6c5bef4a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+[INFO ] 2026-05-01 19:30:38.851 [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2026-05-01 19:30:38.851 [SpringApplicationShutdownHook] c.z.h.HikariDataSource - SpringBootJPAHikariCP - Shutdown initiated...
+[INFO ] 2026-05-01 19:30:38.867 [SpringApplicationShutdownHook] c.z.h.HikariDataSource - SpringBootJPAHikariCP - Shutdown completed.
+[INFO ] 2026-05-01 19:30:38.870 [SpringApplicationShutdownHook] o.e.j.s.Server - Stopped oejs.Server@14565b23{STOPPING}[12.1.8,sto=0]
+[INFO ] 2026-05-01 19:30:38.870 [SpringApplicationShutdownHook] o.e.j.s.h.C.application - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[INFO ] 2026-05-01 19:30:38.870 [SpringApplicationShutdownHook] o.e.j.e.s.ServletContextHandler - Stopped osbjs.JettyEmbeddedWebAppContext@c1b5cb3{application,/ps/physical-storage-management/possr/api,b=file:/C:/Users/Juliu/AppData/Local/Temp/jetty-docbase.8080.6524833241135587983/,a=AVAILABLE,h=oeje11s.SessionHandler@10cef1c6{STOPPED}}
