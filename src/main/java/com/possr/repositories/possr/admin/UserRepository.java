@@ -14,11 +14,43 @@ import jakarta.transaction.Transactional;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO users (employee_id, role_id, username, password) VALUES (:#{#user.employeeId}, :#{#user.roleId}, :#{#user.username}, :#{#user.password})", nativeQuery = true)
+    @Query(value = """
+        INSERT INTO users (employee_id, role_id, username, password)
+        SELECT
+            :#{#user.employeeId} AS employee_id,
+            :#{#user.roleId} AS role_id,
+            :#{#user.username} AS username,
+            :#{#user.password} AS password
+        FROM (SELECT 1 AS validation_result) AS dummy
+        WHERE
+            EXISTS (SELECT 1 FROM employees WHERE id = :#{#user.employeeId})
+            AND EXISTS (SELECT 1 FROM app_roles WHERE id = :#{#user.roleId})
+            AND EXISTS (SELECT 1 FROM work_relations WHERE employee_id = :#{#user.employeeId})
+            AND EXISTS (
+                SELECT 1 FROM (
+                    SELECT * FROM work_relations wr
+                    WHERE employee_id = :#{#user.employeeId}
+                    ORDER BY COALESCE(wr.updated_at, wr.created_at) DESC
+                    LIMIT 1
+                ) AS latest_wr
+                WHERE latest_wr.starting_date IS NOT NULL
+            )
+            AND EXISTS (
+                SELECT 1 FROM (
+                    SELECT * FROM work_relations wr
+                    WHERE employee_id = :#{#user.employeeId}
+                    ORDER BY COALESCE(wr.updated_at, wr.created_at) DESC
+                    LIMIT 1
+                ) AS latest_wr
+                WHERE latest_wr.ending_date IS NULL OR latest_wr.ending_date > CURDATE()
+            )
+    """, nativeQuery = true)
     int createUser(@Param("user") UserEntity userEntity);
 
     @Transactional
-    @Query(value = "SELECT * FROM users WHERE username = :username LIMIT 1", nativeQuery = true)
+    @Query(value = """
+        SELECT * FROM users WHERE username = :username LIMIT 1
+    """, nativeQuery = true)
     UserEntity findByUsername(@Param("username") String username);
 }
 
