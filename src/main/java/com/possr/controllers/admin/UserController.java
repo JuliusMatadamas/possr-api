@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.UserDTO;
 import com.possr.services.admin.UsersService;
+import com.possr.utils.Logging;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/admin/users")
 public class UserController {
     private final UsersService usersService;
+    private final Logging logging;
 
     @GetMapping("/v1/all-users")
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> getAllUsers() {
@@ -29,7 +31,8 @@ public class UserController {
 
     @PostMapping("/v1/create-user")
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> createUser(
-        @RequestBody UserDTO userDTO) {
+            @RequestBody UserDTO userDTO) {
+        logging.logInfo("UserController.createUser", "Creating user", "UserController", userDTO);
         return CompletableFuture.supplyAsync(() -> usersService.createUser(userDTO));
     }
 }
