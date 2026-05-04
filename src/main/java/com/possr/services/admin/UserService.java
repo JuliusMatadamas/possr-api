@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.UserDTO;
 
-public interface UsersService {
+public interface UserService {
     ResponseEntity<ApiResponseDTO> getAllUsers();
     ResponseEntity<ApiResponseDTO> createUser(UserDTO userDTO);
 }

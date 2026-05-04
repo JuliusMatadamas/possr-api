@@ -11,7 +11,7 @@ import com.possr.dto.MetaDTO;
 import com.possr.dto.UserDTO;
 import com.possr.mappers.admin.UserMapper;
 import com.possr.repositories.possr.admin.UserRepository;
-import com.possr.services.admin.UsersService;
+import com.possr.services.admin.UserService;
 import com.possr.utils.Logging;
 import com.possr.utils.evals.EvalUser;
 
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UsersServiceImpl implements UsersService {
+public class UserServiceImpl implements UserService {
     private final EvalUser evalUser;
     private final UserRepository userRepository;
     private final UserMapper userMapper;

@@ -11,6 +11,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private final String[] endpointsToPermit = {
+        "/admin/users/v1/create-user",
+        "/admin/employees/v1/create-employee"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -21,7 +25,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/admin/users/v1/create-user").permitAll()
+                .requestMatchers(endpointsToPermit).permitAll()
                 .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf.disable());

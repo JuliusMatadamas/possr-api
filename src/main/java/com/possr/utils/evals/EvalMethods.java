@@ -91,4 +91,42 @@ public class EvalMethods {
             return false;
         }
     }
+
+    public boolean isOnlyLetters(String str) {
+        if (str == null) {
+            return false;
+        }
+        return str.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+$");
+    }
+
+    public boolean isOnlyLettersAndSpaces(String str) {
+        if (str == null) {
+            return false;
+        }
+        return str.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ ]+$");
+    }
+
+    public boolean isOnlyNumbers(String str) {
+        if (str == null) {
+            return false;
+        }
+        return str.matches("^\\d+$");
+    }
+
+    public boolean isMinimumAge(String date, int minimumAge) {
+        if (date == null) {
+            return false;
+        }
+        if (!date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+            return false;
+        }
+        try {
+            java.time.LocalDate birthDate = java.time.LocalDate.parse(date);
+            java.time.LocalDate today = java.time.LocalDate.now();
+            long years = java.time.temporal.ChronoUnit.YEARS.between(birthDate, today);
+            return years >= minimumAge;
+        } catch (java.time.format.DateTimeParseException e) {
+            return false;
+        }
+    }
 }
