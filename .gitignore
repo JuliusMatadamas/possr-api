@@ -37,4 +37,4 @@ build/
 src/main/resources/*
 
 ### log files ###
-proxy-service-possr.log
+*.log
