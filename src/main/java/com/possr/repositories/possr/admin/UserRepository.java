@@ -44,6 +44,15 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
                 ) AS latest_wr
                 WHERE latest_wr.ending_date IS NULL OR latest_wr.ending_date > CURDATE()
             )
+            AND EXISTS (
+                SELECT 1 FROM (
+                    SELECT * FROM work_relations wr
+                    WHERE employee_id = :#{#user.employeeId}
+                    ORDER BY COALESCE(wr.updated_at, wr.created_at) DESC
+                    LIMIT 1
+                ) AS latest_wr
+                WHERE latest_wr.app_user = true
+            )
     """, nativeQuery = true)
     int createUser(@Param("user") UserEntity userEntity);
 
