@@ -13,7 +13,9 @@ public class EvalUser {
     private final EvalMethods evalMethods = new EvalMethods();
     private final UserRepository userRepository;
 
-    public EvalUser(UserRepository userRepository, Logging logging) {
+    public EvalUser(
+            UserRepository userRepository,
+            Logging logging) {
         this.userRepository = userRepository;
         this.logging = logging;
     }

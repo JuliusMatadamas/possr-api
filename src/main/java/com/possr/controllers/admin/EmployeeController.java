@@ -4,6 +4,7 @@ import com.possr.utils.Logging;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.possr.constants.AppMessages;
 import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.EmployeeDTO;
 import com.possr.services.admin.EmployeeService;
@@ -26,7 +27,7 @@ public class EmployeeController {
     @PostMapping("/v1/create-employee")
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> createEmployee(
             @RequestBody EmployeeDTO employeeDTO) {
-        logging.logInfo("EmployeeController.createEmployee", "Creating employee", "EmployeeController", employeeDTO);
+        logging.logInfo("EmployeeController.createEmployee", "Creating employee", AppMessages.UNKNOWN_SOURCE, employeeDTO);
         return CompletableFuture.supplyAsync(() -> employeeService.createEmployee(employeeDTO));
     }
 }

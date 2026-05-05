@@ -1,6 +1,7 @@
 package com.possr.utils.evals;
 
 public class EvalMethods {
+    private static final String DATE_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$";
     public boolean isValidObject(Object obj) {
         return obj != null;
     }
@@ -81,12 +82,74 @@ public class EvalMethods {
         if (date == null) {
             return false;
         }
-        if (!date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+        if (!date.matches(DATE_PATTERN)) {
             return false;
         }
         try {
             java.time.LocalDate.parse(date);
             return true;
+        } catch (java.time.format.DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public boolean isDateOnOrBeforeCurrentDate(String date) {
+        if (date == null) {
+            return false;
+        }
+        if (!date.matches(DATE_PATTERN)) {
+            return false;
+        }
+        try {
+            java.time.LocalDate parsedDate = java.time.LocalDate.parse(date);
+            return parsedDate.isBefore(java.time.LocalDate.now());
+        } catch (java.time.format.DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public boolean isDateOnOrAfterCurrentDate(String date) {
+        if (date == null) {
+            return false;
+        }
+        if (!date.matches(DATE_PATTERN)) {
+            return false;
+        }
+        try {
+            java.time.LocalDate parsedDate = java.time.LocalDate.parse(date);
+            return parsedDate.isAfter(java.time.LocalDate.now());
+        } catch (java.time.format.DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public boolean areDatesDifferent(String date1, String date2) {
+        if (date1 == null || date2 == null) {
+            return false;
+        }
+        if (!date1.matches(DATE_PATTERN) || !date2.matches(DATE_PATTERN)) {
+            return false;
+        }
+        try {
+            java.time.LocalDate parsedDate1 = java.time.LocalDate.parse(date1);
+            java.time.LocalDate parsedDate2 = java.time.LocalDate.parse(date2);
+            return !parsedDate1.equals(parsedDate2);
+        } catch (java.time.format.DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public boolean isDateLaterThan(String date1, String date2) {
+        if (date1 == null || date2 == null) {
+            return false;
+        }
+        if (!date1.matches(DATE_PATTERN) || !date2.matches(DATE_PATTERN)) {
+            return false;
+        }
+        try {
+            java.time.LocalDate parsedDate1 = java.time.LocalDate.parse(date1);
+            java.time.LocalDate parsedDate2 = java.time.LocalDate.parse(date2);
+            return parsedDate1.isAfter(parsedDate2);
         } catch (java.time.format.DateTimeParseException e) {
             return false;
         }
@@ -117,7 +180,7 @@ public class EvalMethods {
         if (date == null) {
             return false;
         }
-        if (!date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+        if (!date.matches(DATE_PATTERN)) {
             return false;
         }
         try {
@@ -128,5 +191,24 @@ public class EvalMethods {
         } catch (java.time.format.DateTimeParseException e) {
             return false;
         }
+    }
+
+    public boolean isValidBoolean(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        return value.equals("1") || value.equalsIgnoreCase("true")
+            || value.equals("0") || value.equalsIgnoreCase("false");
+    }
+
+    public boolean isValidBoolean(Integer value) {
+        if (value == null) {
+            return false;
+        }
+        return value == 1 || value == 0;
+    }
+
+    public boolean isValidBoolean(Boolean value) {
+        return value != null;
     }
 }

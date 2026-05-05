@@ -3,6 +3,7 @@ package com.possr.controllers.admin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.possr.constants.AppMessages;
 import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.UserDTO;
 import com.possr.services.admin.UserService;
@@ -32,7 +33,7 @@ public class UserController {
     @PostMapping("/v1/create-user")
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> createUser(
             @RequestBody UserDTO userDTO) {
-        logging.logInfo("UserController.createUser", "Creating user", "UserController", userDTO);
+        logging.logInfo("UserController.createUser", "Creating user", AppMessages.UNKNOWN_SOURCE, userDTO);
         return CompletableFuture.supplyAsync(() -> userService.createUser(userDTO));
     }
 }
