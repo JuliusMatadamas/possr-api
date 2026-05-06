@@ -2,13 +2,13 @@ package com.possr.mappers.admin;
 
 import org.springframework.stereotype.Component;
 
-import com.possr.dto.UserDTO;
+import com.possr.dto.UserToCreateDTO;
 import com.possr.entities.possr.admin.UserEntity;
 
 @Component
 public class UserMapper {
-    public UserDTO toDTO(UserEntity entity) {
-        return UserDTO.builder()
+    public UserToCreateDTO toDTO(UserEntity entity) {
+        return UserToCreateDTO.builder()
                 .id(entity.getId())
                 .employeeId(entity.getEmployeeId())
                 .roleId(entity.getRoleId())
@@ -17,7 +17,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserEntity toEntity(UserDTO dto) {
+    public UserEntity toEntity(UserToCreateDTO dto) {
         return UserEntity.builder()
                 .employeeId(dto.getEmployeeId())
                 .roleId(dto.getRoleId())

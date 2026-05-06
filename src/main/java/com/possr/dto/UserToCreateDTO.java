@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserToCreateDTO {
     private Long id;
     private Long employeeId;
     private Long roleId;
