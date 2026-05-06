@@ -14,7 +14,8 @@ public class SecurityConfig {
     private final String[] endpointsToPermit = {
         "/admin/users/v1/create-user",
         "/admin/employees/v1/create-employee",
-        "/admin/work-relations/v1/create-work-relation"
+        "/admin/work-relations/v1/create-work-relation",
+        "/auth/v1/login"
     };
 
     @Bean

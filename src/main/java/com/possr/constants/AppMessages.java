@@ -14,4 +14,5 @@ public final class AppMessages {
     public static final String EMPLOYEE_TO_CREATE = "toCreate";
     public static final String CREATE_WORK_RELATION = "createWorkRelation";
     public static final String WORK_RELATION_TO_CREATE = "toCreate";
+    public static final String TO_LOGIN = "toLogin";
 }

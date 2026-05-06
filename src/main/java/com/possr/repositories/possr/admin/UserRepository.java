@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.possr.entities.possr.admin.UserEntity;
+import com.possr.entities.possr.admin.UserToCreateEntity;
 
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserToCreateEntity, Long> {
     @Modifying
     @Transactional
     @Query(value = """
@@ -54,12 +54,12 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
                 WHERE latest_wr.app_user = true
             )
     """, nativeQuery = true)
-    int createUser(@Param("user") UserEntity userEntity);
+    int createUser(@Param("user") UserToCreateEntity userToCreateEntity);
 
     @Transactional
     @Query(value = """
         SELECT * FROM users WHERE username = :username LIMIT 1
     """, nativeQuery = true)
-    UserEntity findByUsername(@Param("username") String username);
+    UserToCreateEntity findByUsername(@Param("username") String username);
 }
 
