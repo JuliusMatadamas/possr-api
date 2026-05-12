@@ -7,11 +7,11 @@ import com.possr.dto.LoginDTO;
 import com.possr.utils.Logging;
 
 @Component
-public class EvalLogin {
+public class LoginEval {
     private final Logging logging;
     private final EvalMethods evalMethods = new EvalMethods();
 
-    public EvalLogin(Logging logging) {
+    public LoginEval(Logging logging) {
         this.logging = logging;
     }
 

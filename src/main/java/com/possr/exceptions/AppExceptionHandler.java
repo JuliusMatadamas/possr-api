@@ -44,6 +44,22 @@ public class AppExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(DatabaseCreationException.class)
+    public ResponseEntity<ApiResponseDTO> handleDatabaseCreationException(DatabaseCreationException ex) {
+        MetaDTO meta = MetaDTO.builder()
+                .status(AppMessages.ERROR)
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message("Error creating record in database.")
+                .devMessage(ex.getMessage())
+                .build();
+
+        ApiResponseDTO response = ApiResponseDTO.builder()
+                .meta(meta)
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponseDTO> handleAllExceptions(Exception ex) {
         MetaDTO meta = MetaDTO.builder()

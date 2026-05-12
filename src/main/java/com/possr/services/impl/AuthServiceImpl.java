@@ -17,12 +17,12 @@ import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.LoginDTO;
 import com.possr.services.AuthService;
 import com.possr.utils.Logging;
-import com.possr.utils.evals.EvalLogin;
+import com.possr.utils.evals.LoginEval;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private final EvalLogin evalLogin;
+    private final LoginEval evalLogin;
     private final PasswordEncoder passwordEncoder;
     private final Logging logging;
     private final JwtProperties jwtProperties;

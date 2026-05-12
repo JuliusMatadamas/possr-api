@@ -12,9 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
     private final String[] endpointsToPermit = {
-        "/admin/users/v1/create-user",
-        "/admin/employees/v1/create-employee",
-        "/admin/work-relations/v1/create-work-relation",
+        "/companies/v1/create",
         "/auth/v1/login"
     };
 
