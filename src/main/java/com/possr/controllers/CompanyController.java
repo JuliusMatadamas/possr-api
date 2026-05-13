@@ -17,8 +17,8 @@ import com.possr.utils.Logging;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/companies")
 @RequiredArgsConstructor
+@RequestMapping("/companies")
 public class CompanyController {
     private final Logging logging;
     private final CompanyService companyService;
