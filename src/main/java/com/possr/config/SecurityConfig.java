@@ -14,6 +14,7 @@ public class SecurityConfig {
     private final String[] endpointsToPermit = {
         "/companies/v1/create",
         "/role-companies/v1/create",
+        "/genres/v1/create",
         "/auth/v1/login"
     };
 

@@ -17,4 +17,5 @@ public final class AppMessages {
     public static final String TO_LOGIN = "toLogin";
     public static final String TO_CREATE_COMPANY = "toCreateCompany";
     public static final String TO_CREATE_ROLE_COMPANY = "toCreateRoleCompany";
+    public static final String TO_CREATE_GENRE = "toCreateGenre";
 }
