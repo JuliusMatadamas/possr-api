@@ -9,4 +9,5 @@ import com.possr.dto.RoleCompanyDTO;
 @Service
 public interface RoleCompanyService {
     ResponseEntity<ApiResponseDTO> createRoleCompany(RoleCompanyDTO roleCompanyDTO);
+    ResponseEntity<ApiResponseDTO> getAllRoleCompanyByCompanyId(long companyId);
 }

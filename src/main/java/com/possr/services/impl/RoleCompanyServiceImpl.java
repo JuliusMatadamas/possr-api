@@ -1,5 +1,8 @@
 package com.possr.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +12,10 @@ import com.possr.constants.AppMessages;
 import com.possr.dto.ApiResponseDTO;
 import com.possr.dto.MetaDTO;
 import com.possr.dto.RoleCompanyDTO;
+import com.possr.entities.RoleCompanyEntity;
 import com.possr.exceptions.DatabaseCreationException;
+import com.possr.exceptions.DatabaseRetrievalException;
+import com.possr.mappers.RoleCompanyMapper;
 import com.possr.repositories.RoleCompanyRepository;
 import com.possr.services.RoleCompanyService;
 import com.possr.utils.Logging;
@@ -23,6 +29,7 @@ public class RoleCompanyServiceImpl implements RoleCompanyService {
     private final Logging logging;
     private final RoleCompanyEval roleCompanyEval;
     private final RoleCompanyRepository roleCompanyRepository;
+    private final RoleCompanyMapper roleCompanyMapper;
 
     @Override
     public ResponseEntity<ApiResponseDTO> createRoleCompany(RoleCompanyDTO roleCompanyDTO) {
@@ -72,6 +79,54 @@ public class RoleCompanyServiceImpl implements RoleCompanyService {
         ApiResponseDTO response = ApiResponseDTO.builder()
                 .meta(meta)
                 .data(null)
+                .build();
+
+        return ResponseEntity.status(httpStatus).body(response);
+    }
+
+    @Override
+    public ResponseEntity<ApiResponseDTO> getAllRoleCompanyByCompanyId(long companyId) {
+        // 1. Se obtiene la información de la base de datos
+        logging.logInfo(AppMessages.GET_ALL_ROLE_COMPANY_BY_COMPANY_ID, "Getting all role company by company id", AppMessages.UNKNOWN_SOURCE, companyId);
+        List<RoleCompanyEntity> roleCompanyEntityList;
+        try {
+            roleCompanyEntityList = roleCompanyRepository.getAllRoleCompanyByCompanyId(companyId);
+        } catch (Exception e) {
+            logging.logError(AppMessages.GET_ALL_ROLE_COMPANY_BY_COMPANY_ID, "Error getting all role company by company id: " + e.getMessage(), AppMessages.UNKNOWN_SOURCE, null);
+            throw new DatabaseRetrievalException("Error getting all role company by company id");
+        }
+
+        // 3. Se construye la respuesta
+        String message;
+        String devMessage;
+        HttpStatus httpStatus;
+        List<RoleCompanyDTO> roleCompanyDTOList = new ArrayList<>();
+
+        if (roleCompanyEntityList.isEmpty()) {
+            message = "Error getting all role company by company id";
+            devMessage = "The query didn't return any result";
+            httpStatus = HttpStatus.NO_CONTENT;
+            logging.logWarning(AppMessages.GET_ALL_ROLE_COMPANY_BY_COMPANY_ID, message, AppMessages.UNKNOWN_SOURCE, devMessage);
+        } else {
+            message = "All role company by company id retrieved successfully";
+            devMessage = "The query returned a result";
+            httpStatus = HttpStatus.OK;
+            logging.logInfo(AppMessages.GET_ALL_ROLE_COMPANY_BY_COMPANY_ID, message, AppMessages.UNKNOWN_SOURCE, devMessage);
+            for (RoleCompanyEntity roleCompanyEntity : roleCompanyEntityList) {
+                roleCompanyDTOList.add(roleCompanyMapper.toDto(roleCompanyEntity));
+            }
+        }
+
+        MetaDTO meta = MetaDTO.builder()
+                .status(AppMessages.SUCCESS)
+                .statusCode(httpStatus.value())
+                .message(message)
+                .devMessage(devMessage)
+                .build();
+
+        ApiResponseDTO response = ApiResponseDTO.builder()
+                .meta(meta)
+                .data(roleCompanyDTOList)
                 .build();
 
         return ResponseEntity.status(httpStatus).body(response);

@@ -6,6 +6,8 @@ import com.possr.entities.RoleCompanyEntity;
 
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,4 +35,19 @@ public interface RoleCompanyRepository extends JpaRepository<RoleCompanyEntity, 
         )
     """, nativeQuery = true)
     int createRoleCompany(long companyId, String role);
+
+    @Transactional
+    @Query(value = """
+        SELECT
+            rc.role_company_id,
+            rc.company_id,
+            rc.`role`
+        FROM
+            possr.roles_companies rc
+        WHERE
+            rc.company_id = :companyId
+        AND
+            rc.deleted_at IS NULL
+    """, nativeQuery = true)
+    List<RoleCompanyEntity> getAllRoleCompanyByCompanyId(long companyId);
 }
