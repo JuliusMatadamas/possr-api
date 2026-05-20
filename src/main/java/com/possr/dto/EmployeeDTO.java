@@ -1,5 +1,7 @@
 package com.possr.dto;
 
+import java.time.LocalDateTime;
+
 import io.github.resilience4j.core.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +33,10 @@ public class EmployeeDTO {
     @Nullable
     private String address;
     private Long neighborhoodId;
+    @Nullable
+    private LocalDateTime createdAt;
+    @Nullable
+    private LocalDateTime deletedAt;
+    @Nullable
+    private LocalDateTime updatedAt;
 }

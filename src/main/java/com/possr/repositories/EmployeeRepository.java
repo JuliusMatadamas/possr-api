@@ -1,5 +1,7 @@
 package com.possr.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -63,4 +65,27 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
         @Param("address") String address,
         @Param("neighborhoodId") Long neighborhoodId
     );
+
+    @Transactional
+    @Query(value = """
+        SELECT
+            e.employee_id,
+            e.firstname,
+            e.lastname,
+            e.birthdate,
+            e.genre_id,
+            e.curp,
+            e.nss,
+            e.rfc,
+            e.personal_phone,
+            e.personal_email,
+            e.address,
+            e.neighborhood_id,
+            e.created_at,
+            e.deleted_at,
+            e.updated_at
+        FROM
+            possr.employees e
+    """, nativeQuery = true)
+    List<EmployeeEntity> getAllEmployees();
 }

@@ -19,4 +19,5 @@ public final class AppMessages {
     public static final String TO_CREATE_ROLE_COMPANY = "toCreateRoleCompany";
     public static final String TO_CREATE_GENRE = "toCreateGenre";
     public static final String GET_ALL_ROLE_COMPANY_BY_COMPANY_ID = "getAllRoleCompanyByCompanyId";
+    public static final String GET_ALL_EMPLOYEES = "getAllEmployees";
 }

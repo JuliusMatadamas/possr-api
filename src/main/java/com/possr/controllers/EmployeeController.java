@@ -3,6 +3,7 @@ package com.possr.controllers;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,11 @@ public class EmployeeController {
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
         logging.logInfo(AppMessages.EMPLOYEE_TO_CREATE, "Calling service to create employee", AppMessages.UNKNOWN_SOURCE, employeeDTO);
         return CompletableFuture.supplyAsync(() -> employeeService.createEmployee(employeeDTO));
+    }
+
+    @GetMapping("/v1/get-all-employees")
+    public CompletableFuture<ResponseEntity<ApiResponseDTO>> getAllEmployees() {
+        logging.logInfo(AppMessages.GET_ALL_EMPLOYEES, "Calling service to get all employees", AppMessages.UNKNOWN_SOURCE, null);
+        return CompletableFuture.supplyAsync(() -> employeeService.getAllEmployees());
     }
 }

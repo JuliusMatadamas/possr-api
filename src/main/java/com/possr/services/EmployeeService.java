@@ -7,4 +7,5 @@ import com.possr.dto.EmployeeDTO;
 
 public interface EmployeeService {
     ResponseEntity<ApiResponseDTO> createEmployee(EmployeeDTO employeeDTO);
+    ResponseEntity<ApiResponseDTO> getAllEmployees();
 }
