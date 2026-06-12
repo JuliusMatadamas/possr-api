@@ -3,6 +3,7 @@ package com.possr.controllers;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,11 @@ public class GenreController {
     public CompletableFuture<ResponseEntity<ApiResponseDTO>> createGenre(@RequestBody GenreDTO genreDTO) {
         logging.logInfo(AppMessages.TO_CREATE_GENRE, "Calling service to create genre", AppMessages.UNKNOWN_SOURCE, genreDTO);
         return CompletableFuture.supplyAsync(() -> genreService.createGenre(genreDTO));
+    }
+
+    @GetMapping("/v1/getAll")
+    public CompletableFuture<ResponseEntity<ApiResponseDTO>> getAll() {
+        logging.logInfo(AppMessages.GET_ALL_GENRES, "Calling service to retrieve all genres", AppMessages.UNKNOWN_SOURCE, null);
+        return CompletableFuture.supplyAsync(() -> genreService.getAll());
     }
 }

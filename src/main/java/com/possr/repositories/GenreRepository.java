@@ -6,6 +6,8 @@ import com.possr.entities.GenreEntity;
 
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -37,5 +39,19 @@ public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
         @Param("shortName") String shortName,
         @Param("name") String name
     );
+
+    @Transactional
+    @Query(value = """
+        SELECT 
+            genre_id,
+            genre_shortname,
+            genre_name,
+            created_at,
+            deleted_at,
+            updated_at
+        FROM genres
+        WHERE deleted_at IS NULL
+    """, nativeQuery = true)
+    List<GenreEntity> getAll();
 
 }

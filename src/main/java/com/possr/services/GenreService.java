@@ -9,4 +9,6 @@ import com.possr.dto.GenreDTO;
 @Service
 public interface GenreService {
     ResponseEntity<ApiResponseDTO> createGenre(GenreDTO genreDTO);
+
+    ResponseEntity<ApiResponseDTO> getAll();
 }

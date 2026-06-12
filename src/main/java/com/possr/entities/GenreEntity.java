@@ -1,5 +1,7 @@
 package com.possr.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,9 +16,18 @@ public class GenreEntity {
     @Column(name = "genre_id")
     long id;
 
-    @Column(name = "genre_shortname")
+    @Column(name = "genre_shortname", nullable = false)
     String shortName;
 
-    @Column(name = "genre_name")
+    @Column(name = "genre_name", nullable = false)
     String name;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at", nullable = false)
+    private LocalDateTime deletedAt;
 }

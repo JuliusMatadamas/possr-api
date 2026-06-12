@@ -21,4 +21,5 @@ public final class AppMessages {
     public static final String TO_CREATE_GENRE = "toCreateGenre";
     public static final String GET_ALL_ROLE_COMPANY_BY_COMPANY_ID = "getAllRoleCompanyByCompanyId";
     public static final String GET_ALL_CONTINENTS = "getAllContinents";
+    public static final String GET_ALL_GENRES = "getAllGenres";
 }
