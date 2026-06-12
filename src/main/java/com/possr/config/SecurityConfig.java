@@ -12,6 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
     private final String[] endpointsToPermit = {
+        "/continents/v1/getAll",
+        "/continents/v1/create",
+        "/continents/v1/update",
+        "/continents/v1/delete/**",
+        "/continents/v1/getById/**",
+        "/continents/v1/getByPartialName/**",
         "/companies/v1/create",
         "/employees/v1/create",
         "/role-companies/v1/create",
@@ -29,11 +35,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers(endpointsToPermit).permitAll()
-                .anyRequest().authenticated()
-            )
-            .csrf(csrf -> csrf.disable());
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(endpointsToPermit).permitAll()
+                        .anyRequest().authenticated())
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }
